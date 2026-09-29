@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'bun:test';
 import { isNotEqual } from './is-notEqual.js'; 
 
-describe('Тесты isEqual', () => {
+describe('Тесты isNotEqual', () => {
 
 test('должна вернуть true для разных строк', () => {
   expect(isNotEqual('hello', 'world')).toEqual(true);
