@@ -1,11 +1,4 @@
-function len(str) { 
-  let count = 0;
-
-  while (str[count] !== undefined) { 
-    count += 1; }
-    
-return count; 
-}
+import { len } from "./len.js";
 
 export function indexOf(str, search) { 
   if (typeof str !== "string" || typeof search !== "string") { 
