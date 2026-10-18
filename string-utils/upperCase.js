@@ -11,15 +11,12 @@ export function upperCase(str) {
   for (let i = 0; i < strLength; i++) {
     const code = str.charCodeAt(i);
 
-    // Латиница: a-z → A-Z
     if (code >= 97 && code <= 122) {
       result += String.fromCodePoint(code - 32);
     }
-    // Кириллица: а-я → А-Я
     else if (code >= 1072 && code <= 1103) {
       result += String.fromCodePoint(code - 32);
     }
-    // Остальные символы оставляем без изменений
     else {
       result += str[i];
     }
