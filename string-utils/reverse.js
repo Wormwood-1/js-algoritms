@@ -1,3 +1,13 @@
+/**
+ * Reverses a string.
+ * @param {string} str - The string to reverse.
+ * @returns {string} The reversed string.
+ * @throws {TypeError} If the argument is not a string.
+ * 
+ * @example 
+ * reverse("hello"); // returns "olleh" 
+ */
+
 import { len } from "./len.js";
 
 export function reverse(str) {

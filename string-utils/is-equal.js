@@ -1,3 +1,13 @@
+/**
+ * Compares two strings for equality.
+ * @param {string} a - The first string to compare.
+ * @param {string} b - The second string to compare.
+ * @returns {boolean} True if the strings are equal, false otherwise.
+ * @throws {TypeError} If the arguments are not strings.
+ * @example
+ * isEqual("hello", "world"); // returns false
+ * isEqual("hello", "hello"); // returns true
+ */
 export function isEqual(a, b) {
   let i = 0;
 

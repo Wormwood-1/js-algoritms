@@ -1,3 +1,13 @@
+/**
+ * Compares two strings for less than.
+ * @param {string} a - The first string to compare.
+ * @param {string} b - The second string to compare.
+ * @returns {boolean} True if the first string is less than the second, false otherwise.
+ * @throws {TypeError} If the arguments are not strings.
+ * @example
+ * isLess("hello", "world"); // returns true
+ * isLess("hello", "hello"); // returns false
+ */
 export function isLess(a, b) {
   if (typeof a !== 'string' || typeof b !== 'string') {
     throw new TypeError('Аргументы должны быть строками');

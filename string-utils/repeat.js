@@ -1,3 +1,12 @@
+/**
+ * Repeats a string a specified number of times.
+ * @param {string} str - The string to repeat.
+ * @param {number} count - The number of times to repeat the string.
+ * @returns {string} The repeated string.
+ * @throws {TypeError} If the arguments are not of the correct type.
+ * @example
+ * repeat("hello", 3); // returns "hellohellohello"
+ */
 export function repeat(str, count) {
   if (typeof str !== "string") {
     throw new TypeError("str must be a string");
