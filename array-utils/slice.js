@@ -1,5 +1,5 @@
 import { lenArr } from './lenArr.js';
-import { normalizeArrayIndex } from './normalizeArrayIndex.js';
+import { normalizeArrayIndex } from '../helpers/normalizeArrIndex.js';
 /**
  * Создаёт новый массив из указанной части исходного массива.
  *
