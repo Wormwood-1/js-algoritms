@@ -1,15 +1,18 @@
-
 import { lenArr } from "./lenArr.js";
-import { normalizeArrayIndex } from "../helpers/normalizeArrayIndex.js";
+import { normalizeArrayIndex } from "../helpers/normalizeArrIndex.js"; 
+import { push } from "./push.js";
 
 /**
  * Удаляет и/или вставляет элементы в исходный массив.
  *
- * @param {Array} arr - Исходный массив, который будет изменён.
- * @param {number} start - Индекс, с которого начинается изменение.
+ * Мутация: изменяет исходный массив.
+ * Возвращаемое значение: новый массив удалённых элементов.
+ *
+ * @param {Array} arr - Исходный массив.
+ * @param {number} start - Индекс начала изменения, включая отрицательные индексы.
  * @param {number} [deleteCount] - Количество удаляемых элементов.
- * @param {...*} items - Элементы, которые нужно вставить.
- * @returns {Array} Новый массив с удалёнными элементами.
+ * @param {...*} items - Элементы для вставки.
+ * @returns {Array} Новый массив удалённых элементов.
  * @mutates arr
  */
 export function splice(arr, start, deleteCount, ...items) {
@@ -47,7 +50,7 @@ export function splice(arr, start, deleteCount, ...items) {
   const removed = [];
 
   for (let i = 0; i < actualDeleteCount; i++) {
-    removed.push(arr[normalizedStart + i]);
+    push(removed, arr[normalizedStart + i]);
   }
 
   const itemsCount = lenArr(items);
@@ -62,8 +65,8 @@ export function splice(arr, start, deleteCount, ...items) {
       arr[i + difference] = arr[i];
     }
 
-    for (let i = 0; i < -difference; i++) {
-      arr.pop();
+    for (let i = length - 1; i >= length + difference; i--) {
+      delete arr[i];
     }
   }
 
