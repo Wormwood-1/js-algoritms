@@ -96,4 +96,60 @@ describe("Тесты splice — удаление", () => {
   test("Должна выбросить TypeError, если arr не массив", () => {
     expect(() => splice("hello", 0, 1)).toThrow(TypeError);
   });
+
+
+test("Должна вставить элементы на место удалённых", () => {
+  const arr = [1, 2, 3];
+
+  const result = splice(arr, 1, 1, "a", "b");
+
+  expect(result).toEqual([2]);
+  expect(arr).toEqual([1, "a", "b", 3]);
+});
+
+test("Должна вставить элементы без удаления", () => {
+  const arr = [1, 2, 3];
+
+  const result = splice(arr, 1, 0, "x");
+
+  expect(result).toEqual([]);
+  expect(arr).toEqual([1, "x", 2, 3]);
+});
+
+test("Должна вставить элементы в начало", () => {
+  const arr = [2, 3];
+
+  const result = splice(arr, 0, 0, 0, 1);
+
+  expect(result).toEqual([]);
+  expect(arr).toEqual([0, 1, 2, 3]);
+});
+
+test("Должна вставить элементы в конец", () => {
+  const arr = [1, 2];
+
+  const result = splice(arr, 2, 0, 3, 4);
+
+  expect(result).toEqual([]);
+  expect(arr).toEqual([1, 2, 3, 4]);
+});
+
+test("Должна вставить элементы по отрицательному start", () => {
+  const arr = [1, 2, 3];
+
+  const result = splice(arr, -1, 0, "x");
+
+  expect(result).toEqual([]);
+  expect(arr).toEqual([1, 2, "x", 3]);
+});
+
+test("Должна заменить несколько элементов одним", () => {
+  const arr = [1, 2, 3];
+
+  const result = splice(arr, 0, 2, "a");
+
+  expect(result).toEqual([1, 2]);
+  expect(arr).toEqual(["a", 3]);
+});
+
 });

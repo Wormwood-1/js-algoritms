@@ -3,15 +3,16 @@ import { lenArr } from "./lenArr.js";
 import { normalizeArrayIndex } from "../helpers/normalizeArrayIndex.js";
 
 /**
- * Удаляет указанное количество элементов из массива.
+ * Удаляет и/или вставляет элементы в исходный массив.
  *
  * @param {Array} arr - Исходный массив, который будет изменён.
- * @param {number} start - Индекс, с которого начинается удаление.
+ * @param {number} start - Индекс, с которого начинается изменение.
  * @param {number} [deleteCount] - Количество удаляемых элементов.
+ * @param {...*} items - Элементы, которые нужно вставить.
  * @returns {Array} Новый массив с удалёнными элементами.
  * @mutates arr
  */
-export function splice(arr, start, deleteCount) {
+export function splice(arr, start, deleteCount, ...items) {
   if (!Array.isArray(arr)) {
     throw new TypeError("First argument must be an array");
   }
@@ -49,12 +50,25 @@ export function splice(arr, start, deleteCount) {
     removed.push(arr[normalizedStart + i]);
   }
 
-  for (let i = normalizedStart; i < length - actualDeleteCount; i++) {
-    arr[i] = arr[i + actualDeleteCount];
+  const itemsCount = lenArr(items);
+  const difference = itemsCount - actualDeleteCount;
+
+  if (difference > 0) {
+    for (let i = length - 1; i >= normalizedStart + actualDeleteCount; i--) {
+      arr[i + difference] = arr[i];
+    }
+  } else if (difference < 0) {
+    for (let i = normalizedStart + actualDeleteCount; i < length; i++) {
+      arr[i + difference] = arr[i];
+    }
+
+    for (let i = 0; i < -difference; i++) {
+      arr.pop();
+    }
   }
 
-  for (let i = 0; i < actualDeleteCount; i++) {
-    arr.pop();
+  for (let i = 0; i < itemsCount; i++) {
+    arr[normalizedStart + i] = items[i];
   }
 
   return removed;
